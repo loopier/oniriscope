@@ -13,7 +13,7 @@ VideoInput::VideoInput()
 
     cam.listDevices();
 
-    cam.setDeviceID(1);
+    cam.setDeviceID(0);
     cam.setDesiredFrameRate(60);
     cam.initGrabber(camWidth, camHeight);
 }
