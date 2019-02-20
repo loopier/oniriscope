@@ -10,6 +10,7 @@ class ImageSequence : public ofThread
 
         void threadedFunction();
         void update();
+        void updateImage();
         ofPixels getPixels();
         ofImage getImage();
         /// \brief  Toggles playing video.

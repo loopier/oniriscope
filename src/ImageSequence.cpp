@@ -54,12 +54,20 @@ void ImageSequence::threadedFunction()
 
 void ImageSequence::update()
 {
-    if (isRunning == false) return;
-    if (isTimeForNewFrame() == false)   return;
     if (sequence.size() == 0)    return;
-
-    nextFrame();
+    if (isRunning && isTimeForNewFrame())   nextFrame();
+    if (sequence.size() == 0)    return;
+    if (isRunning && isTimeForNewFrame())   nextFrame();
     img = sequence[currentFrame];
+    img = sequence[currentFrame];
+}
+
+void ImageSequence::updateImage()
+{
+    if (sequence.size() == 0)   return;
+    if (isRunning == false)     return;
+    if (isTimeForNewFrame() == false)   return;
+    nextFrame();
 }
 
 ofPixels ImageSequence::getPixels()
@@ -125,13 +133,16 @@ void ImageSequence::nextFrame()
 {
     if (sequence.size() <= 0)   return;
     currentFrame = (currentFrame + 1) % sequence.size();
+    updateImage();
 }
 
 void ImageSequence::previousFrame()
 {
+    /* ofLogVerbose() << __PRETTY_FUNCTION__ << " " << currentFrame; */
     if (sequence.size() <= 0)   return;
     currentFrame -= 1;
     if (currentFrame < 0)  currentFrame = sequence.size() - 1;
+    updateImage();
     /* ofLogVerbose() << __PRETTY_FUNCTION__ << " " << currentFrame; */
 }
 
