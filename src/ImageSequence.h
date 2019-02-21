@@ -32,11 +32,13 @@ class ImageSequence : public ofThread
         void nextFrame();
         void previousFrame();
         void setFramerate(int fps);
+        int getFrameRate();
         void increaseFramerate();
         void decreaseFramerate();
         /// \brief  Checks if it's time for a new frame.
         bool isTimeForNewFrame();
         int getNumFrames();
+        vector<ofImage>& getSequence();
 
     private:
         vector<ofImage> sequence;

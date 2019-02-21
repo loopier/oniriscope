@@ -48,6 +48,36 @@ void ofApp::showAnimation(){
 }
 
 //--------------------------------------------------------------
+void ofApp::save()
+{
+    /* imageSequence.stop(); */
+    /* string extension = ".avi"; */
+    /* ofFileDialogResult saveFileResult = ofSystemSaveDialog(ofGetTimestampString() + extension, "Save your file"); */
+    /* if (saveFileResult.bSuccess) { */
+    /*     string moviePath = saveFileResult.filePath; */
+    /*     if (!ofIsStringInString(extension, moviePath))  moviePath += extension; */
+    /*     ofLogVerbose() << "Saving file to: " <<  moviePath; */
+    /*     string dirPath = moviePath.substr(0, moviePath.find(".")); */
+    /*     string movieFilename = saveFileResult.fileName; */
+    /*     string basename = movieFilename.substr(0, movieFilename.find(".")); */
+    /*     // Create a temporary folder to store frames */
+    /*     ofDirectory dir(dirPath); */
+    /*     if (!dir.exists())  dir.create(true); */
+    /*     // Save sequence of images to temporary directory */
+    /*     vector<ofImage> images = imageSequence.getSequence(); */
+    /*     for (int i = 0; i < images.size(); i++) { */
+    /*         string imgFilename = dirPath + "/" + basename + "-" + ofToString(i) + ".png"; */
+    /*         images[i].save(imgFilename); */
+    /*         ofLogVerbose() << "File name: " << imgFilename; */
+    /*     } */
+    /*     // Use FFMPEG to save the sequence to movie file */
+    /*     : */
+    /*     // Delete temporary directory */
+    MovieExporter exporter;
+    exporter.exportSequence(imageSequence.getSequence(), imageSequence.getFrameRate());
+}
+
+//--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     char k = char(key);
     if (key == ' ') {
@@ -68,6 +98,8 @@ void ofApp::keyPressed(int key){
         imageSequence.decreaseFramerate();
     } else if (key == 'p') {
         imageSequence.togglePlay();
+    } else if (key == 's') {
+        save();
     } else {
         ofLog() << "Key not mapped: " << k;
     }

@@ -151,6 +151,11 @@ void ImageSequence::setFramerate(int fps)
     ofLogVerbose() << __PRETTY_FUNCTION__;
 }
 
+int ImageSequence::getFrameRate()
+{
+    return frameRate;
+}
+
 void ImageSequence::increaseFramerate()
 {
     frameRate += 1;
@@ -180,3 +185,7 @@ int ImageSequence::getNumFrames()
     return sequence.size();
 }
 
+vector<ofImage>& ImageSequence::getSequence()
+{
+    return sequence;
+}

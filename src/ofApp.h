@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "VideoInput.h"
 #include "ImageSequence.h"
+#include "MovieExporter.h"
 
 class ofApp : public ofBaseApp{
 
@@ -15,6 +16,8 @@ class ofApp : public ofBaseApp{
         void addFrame();
         void showCam();
         void showAnimation();
+        /// \brief  Save image sequence to file
+        void save();
 
         void keyPressed(int key);
         void keyReleased(int key);
